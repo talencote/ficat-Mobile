@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">ficat</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_foryou">For You</string>
+    <string name="menu_popular">Popular</string>
+    <string name="menu_favorites">Favorites</string>
+    <string name="menu_settings">Settings</string>
+
+<!--    Login/Registration page-->
+    <string name="hint_username">Username</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="registration">Registration</string>
+    <string name="login">Login</string>
+    <string name="signup">Don t have an account?</string>
+
+<!--    Fanfic Details-->
+    <string name="description">Description</string>
+    <string name="description_sample">Description sample: asdasdasdaaaaaaaaaa ads asd askjd kasd basdb jasd asmd askjd jkasndm asndn uashd masd asmdnasnmsanmndm,as dasdnas,ndmasndmn ajksdasdmasdn</string>
+    <string name="btn_read">Read</string>
+    <string name="author_sample">Author: user123</string>
+    <string name="fandom_sample">Fandom: Naruto</string>
+</resources>

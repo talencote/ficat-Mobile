@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/background_color"
+    android:padding="@dimen/spacing_4x">
+
+    <ImageView
+        android:id="@+id/fanfic_header_image"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:src="@drawable/import_placeholder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/fanfic_name"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        tools:text="Fanfic Name"
+        android:layout_marginTop="@dimen/spacing_4x"
+        android:textSize="@dimen/text_size_headline"
+        android:textStyle="bold"
+        android:textColor="@color/light_white"
+        android:layout_marginBottom="@dimen/spacing_2x"
+        app:layout_constraintTop_toBottomOf="@id/fanfic_header_image"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/fanfic_tags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_2x"
+        tools:text="Romance, Action"
+        android:textColor="@color/tags"
+        android:textSize="@dimen/text_size_sub_title"
+        app:layout_constraintTop_toBottomOf="@id/fanfic_name"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/description_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_4x"
+        android:layout_marginBottom="@dimen/spacing_2x"
+        android:text="@string/description"
+        android:textStyle="bold"
+        android:textColor="@color/light_white"
+        android:textSize="@dimen/text_size_sub_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fanfic_tags" />
+
+    <TextView
+        android:id="@+id/fanfic_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="@string/description_sample"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_body"
+        android:alpha="0.7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/description_header" />
+
+    <TextView
+        android:id="@+id/fanfic_fandom"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/spacing_2x"
+        android:text="@string/fandom_sample"
+        android:alpha="0.8"
+        android:textColor="@color/teal_200"
+        android:textSize="@dimen/text_size_sub_title"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fanfic_description" />
+
+    <TextView
+        android:id="@+id/fanfic_author"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/spacing_2x"
+        android:alpha="0.8"
+        android:text="@string/author_sample"
+        android:textColor="@color/teal_200"
+        android:textSize="@dimen/text_size_sub_title"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fanfic_description" />
+
+    <Button
+        android:id="@+id/btn_read"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_read"
+        android:layout_marginTop="@dimen/spacing_4x"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fanfic_author" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
