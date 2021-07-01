@@ -19,6 +19,9 @@ interface ApiService {
     @GET(Constants.GET_POPULAR_FANFICS)
     suspend fun popular(@Path("page") page : Int): List<FanficDto>
 
+    @GET(Constants.GET_FORYOU_FANFICS)
+    suspend fun foryou(@Path("page") page: Int, @Path("id") id: Long): List<FanficDto>
+
     @POST(Constants.TEST)
     fun testToken(): Call<Boolean>
 

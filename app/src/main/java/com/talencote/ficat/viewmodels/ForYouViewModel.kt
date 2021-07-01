@@ -1,15 +1,27 @@
 package com.talencote.ficat.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.app.Application
+import androidx.lifecycle.*
+import com.talencote.ficat.api.ApiClient
+import com.talencote.ficat.api.SessionManager
+import com.talencote.ficat.data.dto.FanficDto
 import kotlinx.coroutines.launch
 
-class ForYouViewModel : ViewModel() {
+class ForYouViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    private var apiClient : ApiClient = ApiClient()
+    private val context = getApplication<Application>().applicationContext
+    private var sessionManager: SessionManager = SessionManager(context)
+
+    private val _data = MutableLiveData<List<FanficDto>>().apply {
+        value = null
     }
-    val text: LiveData<String> = _text
+    val data: LiveData<List<FanficDto>> = _data
+
+    init {
+        viewModelScope.launch {
+            val fanfics = apiClient.getApiService(context).foryou(1, sessionManager.fetchUser().id)
+            _data.postValue(fanfics)
+        }
+    }
 }
