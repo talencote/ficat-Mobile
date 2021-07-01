@@ -7,8 +7,11 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.talencote.ficat.R
 import com.talencote.ficat.data.dto.FanficDto
+import com.talencote.ficat.recyclerview.RouteToFragments
 
 class FragmentFanficDetails : Fragment(R.layout.fragment_fanfic_details) {
+
+    private var clickListener: RouteToFragments? = null
 
     private lateinit var fanficName : TextView
     private lateinit var fanficTags : TextView
@@ -38,8 +41,9 @@ class FragmentFanficDetails : Fragment(R.layout.fragment_fanfic_details) {
         fanficDescription.text = fanfic.description
         fanficFandom.text = fanfic.fandom
         fanficAuthor.text = fanfic.author
+        clickListener = context as RouteToFragments
         readBtn.setOnClickListener {
-            TODO("FANFIC CONTENT")
+            clickListener!!.readFanfic(fanfic.id)
         }
     }
 

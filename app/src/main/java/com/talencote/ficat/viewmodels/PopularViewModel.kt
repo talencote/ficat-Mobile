@@ -18,10 +18,8 @@ class PopularViewModel(application: Application) : AndroidViewModel(application)
 
     init {
         viewModelScope.launch {
-            var fanfics = apiClient.getApiService(context).popular(1)
-            if (fanfics != null) {
-                _data.postValue(fanfics)
-            }
+            val fanfics = apiClient.getApiService(context).popular(1)
+            _data.postValue(fanfics)
         }
     }
 }

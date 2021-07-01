@@ -21,4 +21,7 @@ interface ApiService {
 
     @POST(Constants.TEST)
     fun testToken(): Call<Boolean>
+
+    @GET(Constants.GET_FANFIC)
+    suspend fun getFanfic(@Path("id") id : Int): FanficDto
 }

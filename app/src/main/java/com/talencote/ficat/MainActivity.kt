@@ -3,11 +3,8 @@ package com.talencote.ficat
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -18,14 +15,9 @@ import com.google.android.material.navigation.NavigationView
 import com.talencote.ficat.api.ApiClient
 import com.talencote.ficat.api.SessionManager
 import com.talencote.ficat.data.dto.FanficDto
-import com.talencote.ficat.data.dto.LoginResponse
+import com.talencote.ficat.fragments.FragmentFanficContent
 import com.talencote.ficat.fragments.FragmentFanficDetails
 import com.talencote.ficat.recyclerview.RouteToFragments
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.HttpException
-import retrofit2.Response
-import java.io.IOException
 
 
 class MainActivity : AppCompatActivity(), RouteToFragments {
@@ -85,6 +77,14 @@ class MainActivity : AppCompatActivity(), RouteToFragments {
     override fun onFanficSelected(fanfic: FanficDto) {
         this.supportFragmentManager.beginTransaction().apply {
             replace(R.id.nav_host_fragment, FragmentFanficDetails.newInstance(fanfic), FragmentFanficDetails::class.java.simpleName)
+            addToBackStack("trans: to fanfic details")
+            commit()
+        }
+    }
+
+    override fun readFanfic(id: Int) {
+        this.supportFragmentManager.beginTransaction().apply {
+            replace(R.id.nav_host_fragment, FragmentFanficContent.newInstance(id), FragmentFanficContent::class.java.simpleName)
             addToBackStack("trans: to fanfic details")
             commit()
         }

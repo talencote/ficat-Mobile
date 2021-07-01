@@ -7,7 +7,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class FanficDto(
     @SerializedName("id")
-    var id: Long,
+    var id: Int,
 
     @SerializedName("name")
     var name: String,

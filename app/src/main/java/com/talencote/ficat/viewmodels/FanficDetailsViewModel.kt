@@ -5,5 +5,4 @@ import androidx.lifecycle.AndroidViewModel
 
 class FanficDetailsViewModel(application: Application) : AndroidViewModel(application) {
 
-
 }
