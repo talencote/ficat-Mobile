@@ -17,7 +17,10 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.talencote.ficat.api.ApiClient
 import com.talencote.ficat.api.SessionManager
+import com.talencote.ficat.data.dto.FanficDto
 import com.talencote.ficat.data.dto.LoginResponse
+import com.talencote.ficat.fragments.FragmentFanficDetails
+import com.talencote.ficat.recyclerview.RouteToFragments
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.HttpException
@@ -25,7 +28,7 @@ import retrofit2.Response
 import java.io.IOException
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), RouteToFragments {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var sessionManager: SessionManager
@@ -40,18 +43,18 @@ class MainActivity : AppCompatActivity() {
         apiClient = ApiClient()
         var flag: Boolean = false
         flag = (this.getSharedPreferences(this.getString(R.string.app_name), Context.MODE_PRIVATE).contains("user_token"))
-        try {
-            apiClient.getApiService(this).testToken().enqueue(object : Callback<Boolean> {
-                override fun onFailure(call: Call<Boolean>, t: Throwable) {
-                }
-
-                override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
-                    flag = true
-                }
-            })
-        } catch (e : Exception) {
-            e.printStackTrace()
-        }
+//        try {
+//            apiClient.getApiService(this).testToken().enqueue(object : Callback<Boolean> {
+//                override fun onFailure(call: Call<Boolean>, t: Throwable) {
+//                }
+//
+//                override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
+//                    flag = true
+//                }
+//            })
+//        } catch (e : Exception) {
+//            e.printStackTrace()
+//        }
 
         if (!flag) {
             val intent = Intent(this, LoginActivity::class.java)
@@ -77,5 +80,13 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onFanficSelected(fanfic: FanficDto) {
+        this.supportFragmentManager.beginTransaction().apply {
+            replace(R.id.nav_host_fragment, FragmentFanficDetails.newInstance(fanfic), FragmentFanficDetails::class.java.simpleName)
+            addToBackStack("trans: to fanfic details")
+            commit()
+        }
     }
 }

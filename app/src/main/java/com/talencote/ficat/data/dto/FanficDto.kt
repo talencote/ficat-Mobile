@@ -1,7 +1,10 @@
 package com.talencote.ficat.data.dto
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class FanficDto(
     @SerializedName("id")
     var id: Long,
@@ -26,4 +29,4 @@ data class FanficDto(
 
     @SerializedName("author")
     var author: String
-)
+):Parcelable
