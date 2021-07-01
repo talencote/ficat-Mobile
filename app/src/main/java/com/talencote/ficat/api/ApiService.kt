@@ -24,4 +24,10 @@ interface ApiService {
 
     @GET(Constants.GET_FANFIC)
     suspend fun getFanfic(@Path("id") id : Int): FanficDto
+
+    @GET(Constants.GET_FANDOMS_STRING)
+    suspend fun getFandomsString(@Path("id") id: Long): MessageResponse
+
+    @POST(Constants.POST_FANDOMS_STRING)
+    fun setFandomsString(@Path("id") id: Long, @Body fandoms: FandomsDto): Call<MessageResponse>
 }

@@ -10,4 +10,6 @@ object Constants {
     const val GET_POPULAR_FANFICS = "fanfic/popular/{page}"
     const val GET_FANFIC = "fanfic/findById/{id}"
     const val TEST = "profile/test_token"
+    const val GET_FANDOMS_STRING = "profile/{id}/favorite_fandoms_string"
+    const val POST_FANDOMS_STRING = "profile/{id}/favorite_fandoms_string/{fandoms}"
 }

@@ -13,6 +13,7 @@ import com.talencote.ficat.api.ApiClient
 import com.talencote.ficat.api.SessionManager
 import com.talencote.ficat.data.dto.LoginRequest
 import com.talencote.ficat.data.dto.LoginResponse
+import com.talencote.ficat.data.models.User
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,8 +27,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
 
         apiClient = ApiClient()
         sessionManager = SessionManager(requireActivity())
@@ -58,6 +57,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
                             if (loginResponse != null) {
                                 sessionManager.saveAuthToken(loginResponse.authToken)
+                                sessionManager.saveUser(User(
+                                        id = loginResponse.id,
+                                        username = loginResponse.username,
+                                        email = loginResponse.email
+                                ))
                                 Toast.makeText(requireContext(), "Auth success", Toast.LENGTH_SHORT).show()
                                 val intent = Intent(requireContext(), MainActivity::class.java)
                                 startActivity(intent)

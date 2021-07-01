@@ -47,4 +47,13 @@ class SessionManager (context: Context) {
                 email = prefs.getString(USER_EMAIL, "null")
         ))
     }
+
+    fun clearData() {
+        val editor = prefs.edit()
+        editor.remove(USER_TOKEN)
+        editor.remove(USER_ID)
+        editor.remove(USER_USERNAME)
+        editor.remove(USER_EMAIL)
+        editor.apply()
+    }
 }

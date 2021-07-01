@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -21,6 +22,8 @@ import com.talencote.ficat.data.dto.FanficDto
 import com.talencote.ficat.fragments.FanficContentFragment
 import com.talencote.ficat.fragments.FanficDetailsFragment
 import com.talencote.ficat.recyclerview.RouteToFragments
+import com.talencote.ficat.viewmodels.SettingsViewModel
+import io.reactivex.Observer
 import org.w3c.dom.Text
 
 
@@ -37,22 +40,7 @@ class MainActivity : AppCompatActivity(), RouteToFragments {
         sessionManager = SessionManager(this)
 
         apiClient = ApiClient()
-        var flag: Boolean = false
-        flag = (sessionManager.fetchAuthToken() != null)
-//        try {
-//            apiClient.getApiService(this).testToken().enqueue(object : Callback<Boolean> {
-//                override fun onFailure(call: Call<Boolean>, t: Throwable) {
-//                }
-//
-//                override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
-//                    flag = true
-//                }
-//            })
-//        } catch (e : Exception) {
-//            e.printStackTrace()
-//        }
-
-        if (!flag) {
+        if (sessionManager.fetchAuthToken() == null) {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         } else {
@@ -73,7 +61,7 @@ class MainActivity : AppCompatActivity(), RouteToFragments {
             // Passing each menu ID as a set of Ids because each
             // menu should be considered as top level destinations.
             appBarConfiguration = AppBarConfiguration(setOf(
-                    R.id.nav_popular, R.id.nav_foryou, R.id.nav_favorites), drawerLayout)
+                    R.id.nav_popular, R.id.nav_foryou, R.id.nav_favorites, R.id.nav_settings), drawerLayout)
             setupActionBarWithNavController(navController, appBarConfiguration)
             navView.setupWithNavController(navController)
         }

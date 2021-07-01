@@ -26,4 +26,9 @@
     <string name="btn_read">Read</string>
     <string name="author_sample">Author: user123</string>
     <string name="fandom_sample">Fandom: Naruto</string>
+
+<!--    Settings-->
+    <string name="manual">Write fandoms via ;  Fandom1; Fandom2;</string>
+    <string name="btn_set_fandoms">Set Fandoms</string>
+    <string name="logout">Logout</string>
 </resources>

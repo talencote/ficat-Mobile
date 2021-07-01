@@ -5,7 +5,7 @@ import com.talencote.ficat.data.models.User
 
 data class LoginResponse(
     @SerializedName("id")
-    var id: Int,
+    var id: Long,
 
     @SerializedName("username")
     var username: String,
