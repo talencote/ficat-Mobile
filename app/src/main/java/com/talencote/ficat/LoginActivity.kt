@@ -2,7 +2,7 @@ package com.talencote.ficat
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.talencote.ficat.fragments.FragmentLogin
+import com.talencote.ficat.fragments.LoginFragment
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -10,7 +10,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.persistent_container, FragmentLogin.newInstance(), FragmentLogin::class.java.simpleName)
+            replace(R.id.persistent_container, LoginFragment.newInstance(), LoginFragment::class.java.simpleName)
             commit()
         }
     }

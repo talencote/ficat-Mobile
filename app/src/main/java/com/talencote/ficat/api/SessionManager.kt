@@ -3,6 +3,7 @@ package com.talencote.ficat.api
 import android.content.Context
 import android.content.SharedPreferences
 import com.talencote.ficat.R
+import com.talencote.ficat.data.models.User
 
 class SessionManager (context: Context) {
 
@@ -10,6 +11,9 @@ class SessionManager (context: Context) {
 
     companion object {
         const val USER_TOKEN = "user_token"
+        const val USER_ID = "ID_KEY"
+        const val USER_USERNAME = "USERNAME_KEY"
+        const val USER_EMAIL = "EMAIL_KEY"
     }
 
     /**
@@ -26,5 +30,21 @@ class SessionManager (context: Context) {
      */
     fun fetchAuthToken(): String? {
         return prefs.getString(USER_TOKEN, null)
+    }
+
+    fun saveUser(user: User) {
+        val editor = prefs.edit()
+        editor.putLong(USER_ID, user.id)
+        editor.putString(USER_USERNAME, user.username)
+        editor.putString(USER_EMAIL, user.email)
+        editor.apply()
+    }
+
+    fun fetchUser() : User {
+        return (User(
+                id = prefs.getLong(USER_ID, 0),
+                username = prefs.getString(USER_USERNAME, "null"),
+                email = prefs.getString(USER_EMAIL, "null")
+        ))
     }
 }

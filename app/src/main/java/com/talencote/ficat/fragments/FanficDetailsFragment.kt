@@ -9,7 +9,7 @@ import com.talencote.ficat.R
 import com.talencote.ficat.data.dto.FanficDto
 import com.talencote.ficat.recyclerview.RouteToFragments
 
-class FragmentFanficDetails : Fragment(R.layout.fragment_fanfic_details) {
+class FanficDetailsFragment : Fragment(R.layout.fragment_fanfic_details) {
 
     private var clickListener: RouteToFragments? = null
 
@@ -49,8 +49,8 @@ class FragmentFanficDetails : Fragment(R.layout.fragment_fanfic_details) {
 
 
     companion object{
-        fun newInstance(fanfic : FanficDto) : FragmentFanficDetails {
-            val fragment = FragmentFanficDetails()
+        fun newInstance(fanfic : FanficDto) : FanficDetailsFragment {
+            val fragment = FanficDetailsFragment()
             val args = Bundle()
             args.putParcelable(FANFIC_KEY, fanfic)
             fragment.arguments = args

@@ -4,11 +4,11 @@ import com.google.gson.annotations.SerializedName
 
 data class User(
     @SerializedName("id")
-    var id: String,
+    var id: Long,
 
     @SerializedName("username")
-    var username: String,
+    var username: String?,
 
     @SerializedName("email")
-    var email: String
+    var email: String?
 )

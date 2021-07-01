@@ -7,7 +7,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.talencote.ficat.LoginActivity
 import com.talencote.ficat.MainActivity
 import com.talencote.ficat.R
 import com.talencote.ficat.api.ApiClient
@@ -18,10 +17,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FragmentLogin : Fragment(R.layout.fragment_login) {
+class LoginFragment : Fragment(R.layout.fragment_login) {
 
-    private var signupBtn: Button? = null;
-    private var signinBtn: Button? = null;
+    private var signupBtn: Button? = null
+    private var signinBtn: Button? = null
     private lateinit var sessionManager: SessionManager
     private lateinit var apiClient: ApiClient
 
@@ -36,7 +35,7 @@ class FragmentLogin : Fragment(R.layout.fragment_login) {
         signupBtn = view.findViewById(R.id.signup)
         signupBtn?.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction().apply {
-                replace(R.id.persistent_container, FragmentRegistration.newInstance(), FragmentRegistration::class.java.simpleName)
+                replace(R.id.persistent_container, RegistrationFragment.newInstance(), RegistrationFragment::class.java.simpleName)
                 addToBackStack("trans: to reg fragm")
                 commit()
             }
@@ -75,6 +74,6 @@ class FragmentLogin : Fragment(R.layout.fragment_login) {
     }
 
     companion object {
-        fun newInstance() = FragmentLogin()
+        fun newInstance() = LoginFragment()
     }
 }

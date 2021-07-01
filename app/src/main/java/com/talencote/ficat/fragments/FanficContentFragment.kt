@@ -9,10 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.talencote.ficat.R
-import com.talencote.ficat.recyclerview.adapters.FanficListAdapter
 import com.talencote.ficat.viewmodels.FanficContentViewModel
 
-class FragmentFanficContent: Fragment(R.layout.fragment_fanfic_content) {
+class FanficContentFragment: Fragment(R.layout.fragment_fanfic_content) {
 
     private lateinit var viewModel: FanficContentViewModel
     private lateinit var contentView: TextView
@@ -48,8 +47,8 @@ class FragmentFanficContent: Fragment(R.layout.fragment_fanfic_content) {
 
 
     companion object{
-        fun newInstance(id: Int): FragmentFanficContent {
-            val fragment = FragmentFanficContent()
+        fun newInstance(id: Int): FanficContentFragment {
+            val fragment = FanficContentFragment()
             val args = Bundle()
             args.putInt(ID_KEY, id)
             fragment.arguments = args

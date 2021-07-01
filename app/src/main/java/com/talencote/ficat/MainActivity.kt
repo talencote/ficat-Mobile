@@ -3,6 +3,9 @@ package com.talencote.ficat
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -15,9 +18,10 @@ import com.google.android.material.navigation.NavigationView
 import com.talencote.ficat.api.ApiClient
 import com.talencote.ficat.api.SessionManager
 import com.talencote.ficat.data.dto.FanficDto
-import com.talencote.ficat.fragments.FragmentFanficContent
-import com.talencote.ficat.fragments.FragmentFanficDetails
+import com.talencote.ficat.fragments.FanficContentFragment
+import com.talencote.ficat.fragments.FanficDetailsFragment
 import com.talencote.ficat.recyclerview.RouteToFragments
+import org.w3c.dom.Text
 
 
 class MainActivity : AppCompatActivity(), RouteToFragments {
@@ -34,7 +38,7 @@ class MainActivity : AppCompatActivity(), RouteToFragments {
 
         apiClient = ApiClient()
         var flag: Boolean = false
-        flag = (this.getSharedPreferences(this.getString(R.string.app_name), Context.MODE_PRIVATE).contains("user_token"))
+        flag = (sessionManager.fetchAuthToken() != null)
 //        try {
 //            apiClient.getApiService(this).testToken().enqueue(object : Callback<Boolean> {
 //                override fun onFailure(call: Call<Boolean>, t: Throwable) {
@@ -60,6 +64,12 @@ class MainActivity : AppCompatActivity(), RouteToFragments {
             val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
             val navView: NavigationView = findViewById(R.id.nav_view)
             val navController = findNavController(R.id.nav_host_fragment)
+
+            val navHeader: View = navView.getHeaderView(0)
+            val user = sessionManager.fetchUser()
+            navHeader.findViewById<TextView>(R.id.username).text = user.username
+            navHeader.findViewById<TextView>(R.id.email).text = user.email
+
             // Passing each menu ID as a set of Ids because each
             // menu should be considered as top level destinations.
             appBarConfiguration = AppBarConfiguration(setOf(
@@ -76,7 +86,7 @@ class MainActivity : AppCompatActivity(), RouteToFragments {
 
     override fun onFanficSelected(fanfic: FanficDto) {
         this.supportFragmentManager.beginTransaction().apply {
-            replace(R.id.nav_host_fragment, FragmentFanficDetails.newInstance(fanfic), FragmentFanficDetails::class.java.simpleName)
+            replace(R.id.nav_host_fragment, FanficDetailsFragment.newInstance(fanfic), FanficDetailsFragment::class.java.simpleName)
             addToBackStack("trans: to fanfic details")
             commit()
         }
@@ -84,7 +94,7 @@ class MainActivity : AppCompatActivity(), RouteToFragments {
 
     override fun readFanfic(id: Int) {
         this.supportFragmentManager.beginTransaction().apply {
-            replace(R.id.nav_host_fragment, FragmentFanficContent.newInstance(id), FragmentFanficContent::class.java.simpleName)
+            replace(R.id.nav_host_fragment, FanficContentFragment.newInstance(id), FanficContentFragment::class.java.simpleName)
             addToBackStack("trans: to fanfic details")
             commit()
         }
